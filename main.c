@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+//#include <string.h>
 
 #define CHARSIZE 1000
 
@@ -13,18 +13,33 @@ void f1();
 void f2();
 void f3();
 
+/*
+  *********************************************************
+  *                                                       *
+  *                   Main Function                       *
+  *                                                       *
+  *********************************************************
+*/
+
 int main()
 {
-	
-	//f1();
+	f1(); // Call to function f1()
 
-	//f2();
+	//f2();  // Call to function f2()
 
-	f3();
+	//f3();  // Call to function f3()
 
 	return EXIT_SUCCESS;
 }
 
+/* 
+  *********************************************************
+  *                                                       *
+  *                Function f1                            *
+  *                                                       *
+  *********************************************************
+*/
+                                                       
 void f1()
 {
 	char charArr[CHARSIZE];
@@ -41,12 +56,20 @@ void f1()
 	printf("AR Size     #%d is %1d\n", n, addr - (long int)charArr);
 
 	addr = (long int)charArr;
-	
+	// Checking if f1 has called itself recursivly 10 times
 	if(n < 10)
 	{
-		f1();
+		f1(); // Call to function f1
 	}
 }
+
+/*
+  *********************************************************
+  *                                                       *
+  *                Function f2                            *
+  *                                                       *
+  *********************************************************
+*/
 
 void f2()
 {
@@ -64,8 +87,16 @@ void f2()
 
 	addr = (long int)charArr;
 	
-	f2();
+	f2(); // Call to function f2
 }	
+
+/*
+  *********************************************************
+  *                                                       *
+  *                Function f3                            *
+  *                                                       *
+  *********************************************************
+*/
 
 void f3()
 {
@@ -84,10 +115,11 @@ void f3()
 	
 	addr = (long int)&c;
 	
+	// Checking if f3 has called itself recursivly 10 times
 	if(n < 10)
 	{
-		f3();
+		f3(); // Call to function f3
 	}
 
-	free(charArr);
+	free(charArr); // Freeing th echarArr pointer
 }
