@@ -16,7 +16,7 @@ void f3();
 int main()
 {
 	
-	f1();
+	//f1();
 
 	f2();
 
@@ -37,10 +37,10 @@ void f1()
 
 	//addr = atoi(&charArr[0]);
 
-	printf("Call #%d     at %p\n", n, (void *) &charArr);
-	printf("AR Size     #%d is %p\n", n, addr);
+	printf("Call #%d     at %p\n", n, (void *) charArr);
+	printf("AR Size     #%d is %1d\n", n, addr - (long int)charArr);
 
-	addr = (void *) &charArr[0];
+	addr = (long int)charArr;
 	
 	if(n < 10)
 	{
@@ -50,8 +50,22 @@ void f1()
 
 void f2()
 {
+	char charArr[CHARSIZE];
 
-}
+	static int n = 0;
+
+	static long int addr = 0;
+
+	n++;
+
+	printf("Call #%d     at %p\n", n, (void *) charArr);
+	printf("AR Size     #%d is %1d\n", n, addr - (long int)charArr);
+	printf("Stack Size  #%d is %1d\n", n, (addr - (long int)charArr) * n);
+
+	addr = (long int)charArr;
+	
+	f2();
+}	
 
 void f3()
 {
